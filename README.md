@@ -1,6 +1,7 @@
 # Single-cell accessor for Xarray
 
-##Description
+## Description
+
 For the accessor assignment, I created this `single_cell` cell accessor
 which computes properties of labeled regions from an xr.Dataset containing
 images and labels as variables (or just labels).
@@ -9,15 +10,13 @@ A typical application would be to collect a timelapse imaging dataset of cells
 expressing some fluorescent protein. After segmenting the cells (generating the labels)
 its common to want to quantify the average intensity of an individual cell over time.
 
-*Disclosure* This is inspired/based on some other work I did previously
+*Disclosure*: This is inspired/based on some other work I did previously
 ([here](https://github.com/Hekstra-Lab/microutil/blob/main/microutil/single_cell/single_cell.py)
-and [here](https://github.com/jrussell25/dask-regionprops))
-which did not use accessors but probably should have.
+and [here](https://github.com/jrussell25/dask-regionprops)) (which did not use accessors but probably should have!)
 
 ### Installation
 
-Clone this repo from [github](https://github.com/jrussell25/xr-single-cell) and install
-with
+Clone this repo from [github](https://github.com/jrussell25/xr-single-cell) and install with
 
 `pip install -e .[dev]`
 
@@ -48,7 +47,5 @@ labels.data[:,2:,2:] = 2
 
 ds = xr.Dataset({"images":img, "labels":labels})
 
-props = ds.single_cell.regionprops("labels", "images", properties=("label", "centroid",
-"intensity_mean"))
-
+props = ds.single_cell.regionprops("labels", "images", properties=("label", "centroid", "intensity_mean"))
 ```
